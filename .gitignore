@@ -1,0 +1,5 @@
+**/cmake-build-debug
+**/.idea
+demo/*
+!demo/stride131.txt
+!demo/stride132.txt
