@@ -42,8 +42,7 @@ class CacheMonitor {
 	std::vector<CacheSet> cache;
 	
 	CacheMonitor(
-		std::string name, u64 blockSize, u64 blockCntPerSet, u64 setCntPerCache,
-		u64 blockCntPerCache
+		std::string name, u64 blockSize, u64 blockCntPerSet, u64 setCntPerCache, u64 blockCntPerCache
 	);
 	
 	u64 timNow = 0;
@@ -53,7 +52,7 @@ class CacheMonitor {
 	u64 conflictMissCnt = 0;
 	u64 missCnt = 0;
 	u64 hitCnt = 0;
-	u64 blockOcrCnt=0;  //  how many blocks in cache is occupied.
+	u64 blockOcrCnt = 0;  //  how many blocks in cache is occupied.
 	void access(u64 addr);
 	
 	[[nodiscard]] std::string cache_to_string() const;

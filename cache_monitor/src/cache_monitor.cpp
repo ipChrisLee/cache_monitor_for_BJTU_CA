@@ -7,8 +7,7 @@
 namespace cache_monitor {
 
 CacheMonitor::CacheMonitor(
-	std::string name, u64 blockSize, u64 blockCntPerSet, u64 setCntPerCache,
-	u64 blockCntPerCache
+	std::string name, u64 blockSize, u64 blockCntPerSet, u64 setCntPerCache, u64 blockCntPerCache
 ) : name(std::move(name)),
     BLOCK_SIZE(blockSize),
     BLOCK_CNT_PER_SET(blockCntPerSet),
@@ -55,6 +54,8 @@ void CacheMonitor::access(u64 addr) {
 					break;
 				}
 			}
+			++compulsoryMissCnt;
+			++blockOcrCnt;
 		} else {  //  replace least recently used line.
 			for (auto & cacheSetLine: cache[setIndex]) {
 				if (cacheSetLine.tim == lruTim) {
@@ -65,6 +66,11 @@ void CacheMonitor::access(u64 addr) {
 					};
 					break;
 				}
+			}
+			if (blockOcrCnt == BLOCK_CNT_PER_CACHE) {
+				++capacityMissCnt;
+			} else {
+				++conflictMissCnt;
 			}
 		}
 	} else {
@@ -102,7 +108,7 @@ std::string CacheMonitor::res_to_string() const {
 
 std::string CacheMonitor::res_csv_header() {
 	auto res = std::string();
-	res += "name,cache size,block size,block cnt per set,set cnt per cache,access cnt,hit cnt,miss cnt\n";
+	res += "name,cache size,block size,block cnt per set,set cnt per cache,access cnt,hit cnt,miss cnt,compulsory miss cnt,capacity miss cnt,conflict miss cnt\n";
 	return res;
 }
 
@@ -123,6 +129,12 @@ std::string CacheMonitor::res_to_csv_line() const {
 	res += moe::format_str(",%lld", hitCnt);
 	//  miss cnt
 	res += moe::format_str(",%lld", missCnt);
+	//  compulsory miss cnt
+	res += moe::format_str(",%lld", compulsoryMissCnt);
+	//  capacity miss cnt
+	res += moe::format_str(",%lld", capacityMissCnt);
+	//  conflict miss cnt
+	res += moe::format_str(",%lld", conflictMissCnt);
 	res += "\n";
 	return res;
 }
