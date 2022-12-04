@@ -1,5 +1,6 @@
 **/cmake-build-debug
 **/.idea
+**/.DS_Store
 demo/*
 !demo/stride131.txt
 !demo/stride132.txt
