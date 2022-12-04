@@ -11,4 +11,29 @@
 
 # 下载
 
-`git clone `
+```shell
+git clone https://github.com/ipChrisLee/cache_monitor_for_BJTU_CA.git --recursive
+```
+
+这个项目使用了一些外部库，所以需要`--recursive`。
+
+
+
+# 使用
+
+```shell
+cd cache_monitor_for_BJTU_CA
+cmake -S . -B build
+cd build && make && cd ..
+build/cache_monitor/cache_monitor --in demo/stride131.txt --csv_out demo/res_stride131.csv
+build/cache_monitor/cache_monitor --in demo/stride132.txt --csv_out demo/res_stride132.csv
+```
+
+之后就可以通过demo/res_stride131.csv和demo/res_stride132.csv看两个结果。
+
+目前在macOS测试过没问题，Linux下理论上应该没问题。
+
+注意：
+
+1. 第一步是进入项目根目录。
+2. 第三步是在默认你的CMake生成makefile的情况下的，如果你的CMake生成的toolchain不同，改成对应的就行。
