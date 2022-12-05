@@ -19,7 +19,7 @@ git clone https://github.com/ipChrisLee/cache_monitor_for_BJTU_CA.git --recursiv
 
 
 
-# 使用
+# 使用Cache monitor
 
 ```shell
 cd cache_monitor_for_BJTU_CA
@@ -37,3 +37,13 @@ build/cache_monitor/cache_monitor --in demo/stride132.txt --csv_out demo/res_str
 
 1. 第一步是进入项目根目录。
 2. 第三步是在默认你的CMake生成makefile的情况下的，如果你的CMake生成的toolchain不同，改成对应的就行。
+
+
+
+# 关于地址访问生成器
+
+**在Linux系统下**，在access_list_gen/sh_src/下执行`gen.sh`，即可生成矩阵乘（mat_mut.c）和数组加（array_add.c）两个程序的内存访问数据（valgrind-lackey模式的，格式信息请参考[lackey源码注释](https://sourceware.org/git/?p=valgrind.git;a=blob;f=lackey/lk_main.c;h=e19b39f16f3414aef3141eeef8e229e0b73c7071;hb=HEAD)）。
+
+这些数据和Cache monitor输入需要的数据格式不同，所以需要access_list_gen再处理：
+
+TBD
