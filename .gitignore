@@ -2,5 +2,7 @@
 **/.idea
 **/.DS_Store
 demo/*
-!demo/stride131.txt
-!demo/stride132.txt
+!demo/stride131*
+!demo/stride132*
+!demo/array_add*
+!demo/mat_mut*
