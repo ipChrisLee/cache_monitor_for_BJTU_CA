@@ -62,7 +62,6 @@ class CacheMonitor {
 	[[nodiscard]] std::string res_to_csv_line() const;
 	static std::string res_csv_header();
 	
-	
 };
 
 }
