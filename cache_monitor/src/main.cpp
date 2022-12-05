@@ -44,32 +44,18 @@ int main(int argc, char ** argv) {
 	}();
 	auto csvResFileOStream = std::ofstream(info.csvResFilePath);
 	
-	auto cacheMonitors = std::vector{
-		//  direct mapping
-		cache_monitor::CacheMonitor(
-			"direct mapping cache",
-			16,
-			1,
-			16,
-			16
-		),
-		//  set-associative
-		cache_monitor::CacheMonitor(
-			"set-associative cache",
-			16,
-			2,
-			8,
-			16
-		),
-		//  fully associative
-		cache_monitor::CacheMonitor(
-			"fully associative cache",
-			16,
-			16,
-			1,
-			16
-		),
-	};
+	auto cacheMonitors = std::vector<cache_monitor::CacheMonitor>();
+	for (auto blockCntPerCache: std::vector<u64>{16, 32, 64}) {
+		for (auto blockCntPerSet: std::vector<u64>{1, 2, 4, blockCntPerCache}) {
+			auto setCntPerCache = blockCntPerCache / blockCntPerSet;
+			auto name = blockCntPerSet == 1 ? "direct mapping cache" : (
+				setCntPerCache == 1 ? "fully associative cache" : "set-associative cache"
+			);
+			cacheMonitors.emplace_back(
+				name, 16, blockCntPerSet, setCntPerCache, blockCntPerCache
+			);
+		}
+	}
 	csvResFileOStream << cache_monitor::CacheMonitor::res_csv_header();
 	for (auto & cacheMonitor: cacheMonitors) {
 		for (auto & addr: accessList) {

@@ -108,7 +108,7 @@ std::string CacheMonitor::res_to_string() const {
 
 std::string CacheMonitor::res_csv_header() {
 	auto res = std::string();
-	res += "name,cache size,block size,block cnt per set,set cnt per cache,access cnt,hit cnt,miss cnt,compulsory miss cnt,capacity miss cnt,conflict miss cnt\n";
+	res += "name,cache size,block size,block cnt per set,set cnt per cache,access cnt,hit cnt,miss cnt,compulsory miss cnt,capacity miss cnt,conflict miss cnt,hit rate\n";
 	return res;
 }
 
@@ -135,6 +135,8 @@ std::string CacheMonitor::res_to_csv_line() const {
 	res += moe::format_str(",%lld", capacityMissCnt);
 	//  conflict miss cnt
 	res += moe::format_str(",%lld", conflictMissCnt);
+	//  hit rate
+	res += moe::format_str(",%lf%", (double) hitCnt / accessCnt * 100);
 	res += "\n";
 	return res;
 }
