@@ -1,0 +1,13 @@
+name,cache size,block size,block cnt per set,set cnt per cache,access cnt,hit cnt,miss cnt,compulsory miss cnt,capacity miss cnt,conflict miss cnt,hit rate
+direct mapping cache,256,16,1,16,20000,19998,2,2,0,0,99.990000
+set-associative cache,256,16,2,8,20000,19998,2,2,0,0,99.990000
+set-associative cache,256,16,4,4,20000,19998,2,2,0,0,99.990000
+fully associative cache,256,16,16,1,20000,19998,2,2,0,0,99.990000
+direct mapping cache,512,16,1,32,20000,19998,2,2,0,0,99.990000
+set-associative cache,512,16,2,16,20000,19998,2,2,0,0,99.990000
+set-associative cache,512,16,4,8,20000,19998,2,2,0,0,99.990000
+fully associative cache,512,16,32,1,20000,19998,2,2,0,0,99.990000
+direct mapping cache,1024,16,1,64,20000,19998,2,2,0,0,99.990000
+set-associative cache,1024,16,2,32,20000,19998,2,2,0,0,99.990000
+set-associative cache,1024,16,4,16,20000,19998,2,2,0,0,99.990000
+fully associative cache,1024,16,64,1,20000,19998,2,2,0,0,99.990000
