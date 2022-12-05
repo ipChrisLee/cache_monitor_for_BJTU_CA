@@ -42,7 +42,7 @@ build/cache_monitor/cache_monitor --in demo/stride132.txt --csv_out demo/stride1
 
 # 关于地址访问生成器
 
-**在Linux系统下**，在access_list_gen/sh_src/下执行`gen.sh`，即可生成矩阵乘（mat_mut.c）和数组加（array_add.c）两个程序的内存访问数据（valgrind-lackey模式的，格式信息请参考[lackey源码注释](https://sourceware.org/git/?p=valgrind.git;a=blob;f=lackey/lk_main.c;h=e19b39f16f3414aef3141eeef8e229e0b73c7071;hb=HEAD)），分别为access_list_gen/sh_src/mat_mut_memory_trace_lackey.txt和access_list_gen/sh_src/array_add_memory_trace_lackey.txt。
+**在Linux系统下**，先安装[valgrind](https://valgrind.org)，之后在access_list_gen/sh_src/下执行`gen.sh`，即可生成矩阵乘（mat_mut.c）和数组加（array_add.c）两个程序的内存访问数据（valgrind-lackey模式的，格式信息请参考[lackey源码注释](https://sourceware.org/git/?p=valgrind.git;a=blob;f=lackey/lk_main.c;h=e19b39f16f3414aef3141eeef8e229e0b73c7071;hb=HEAD)），分别为access_list_gen/sh_src/mat_mut_memory_trace_lackey.txt和access_list_gen/sh_src/array_add_memory_trace_lackey.txt。
 
 这些数据和Cache monitor输入需要的数据格式不同，所以需要access_list_gen再处理：
 
